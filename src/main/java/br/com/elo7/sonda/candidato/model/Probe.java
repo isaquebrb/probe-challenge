@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Slf4j
 @Entity
@@ -17,6 +14,7 @@ import javax.persistence.Id;
 public class Probe {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private Long id;
 
@@ -30,6 +28,9 @@ public class Probe {
     @Enumerated(value = EnumType.STRING)
     private Direction direction;
 
+    @Getter
+    @ManyToOne
+    @JoinColumn(name = "planet_id") //todo lazy? validar no final da entrega
     private Planet planet;
 
     public void moveProbeForward() {

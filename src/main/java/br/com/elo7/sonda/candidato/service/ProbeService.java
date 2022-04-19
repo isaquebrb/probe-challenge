@@ -5,8 +5,8 @@ import br.com.elo7.sonda.candidato.dto.ProbeDTO;
 import br.com.elo7.sonda.candidato.model.Command;
 import br.com.elo7.sonda.candidato.model.Planet;
 import br.com.elo7.sonda.candidato.model.Probe;
-import br.com.elo7.sonda.candidato.persistence.Planets;
-import br.com.elo7.sonda.candidato.persistence.Probes;
+import br.com.elo7.sonda.candidato.persistence.PlanetRepository;
+import br.com.elo7.sonda.candidato.persistence.ProbeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,15 +19,15 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ProbeService {
 
-    private final Planets planets;
-    private final Probes probes;
+    private final PlanetRepository planetRepository;
+    private final ProbeRepository probeRepository;
 
     public List<Probe> landProbes(InputDTO input) {
         Planet planet = concertPlanet(input);
-        planets.save(planet);
+        planetRepository.save(planet);
 
         List<Probe> convertedProbes = convertAndMoveProbes(input, planet);
-        convertedProbes.forEach(probe -> probes.save(probe));
+        convertedProbes.forEach(probe -> probeRepository.save(probe));
 
         return convertedProbes;
     }
