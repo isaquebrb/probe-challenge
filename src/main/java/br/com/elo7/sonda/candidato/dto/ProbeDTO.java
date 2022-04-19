@@ -1,9 +1,14 @@
 package br.com.elo7.sonda.candidato.dto;
 
+import br.com.elo7.sonda.candidato.model.Direction;
+import lombok.Getter;
+
 public class ProbeDTO {
 	private int x; 
 	private int y;
-	private char direction;
+
+	@Getter
+	private Direction direction;
 	private String commands;
 
 	public int getX() {
@@ -17,12 +22,6 @@ public class ProbeDTO {
 	}
 	public void setY(int y) {
 		this.y = y;
-	}
-	public char getDirection() {
-		return direction;
-	}
-	public void setDirection(char direction) {
-		this.direction = direction;
 	}
 	public String getCommands() {
 		return commands;

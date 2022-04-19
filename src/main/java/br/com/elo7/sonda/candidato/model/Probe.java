@@ -1,40 +1,71 @@
 package br.com.elo7.sonda.candidato.model;
 
-public class Probe {
-	private int id;
-	private int x;
-	private int y;
-	private char direction;
-	private Planet planet;
+import br.com.elo7.sonda.candidato.exception.DirectionException;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getX() {
-		return x;
-	}
-	public void setX(int x) {
-		this.x = x;
-	}
-	public int getY() {
-		return y;
-	}
-	public void setY(int y) {
-		this.y = y;
-	}
-	public char getDirection() {
-		return direction;
-	}
-	public void setDirection(char direction) {
-		this.direction = direction;
-	}
-	public Planet getPlanet() {
-		return planet;
-	}
-	public void setPlanet(Planet planet) {
-		this.planet = planet;
-	}
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+
+@Slf4j
+@Entity
+@Setter
+public class Probe {
+
+    @Id
+    @Setter(AccessLevel.NONE)
+    private Long id;
+
+    @Getter
+    private Integer x;
+
+    @Getter
+    private Integer y;
+
+    @Getter
+    @Enumerated(value = EnumType.STRING)
+    private Direction direction;
+
+    private Planet planet;
+
+    public void moveProbeForward() {
+        int newX = this.getX();
+        int newY = this.getY();
+        switch (this.getDirection()) {
+            case N -> newY++;
+            case W -> newX--;
+            case S -> newY--;
+            case E -> newX++;
+            default -> throw new DirectionException("Wrong direction. Cannot move probe forward");
+        }
+        log.info("Probe moved forward. Coordinates: X = [{}] - Y = [{}]", newX, newY);
+        this.setX(newX);
+        this.setY(newY);
+    }
+
+    public void turnProbeLeft() {
+        Direction newDirection = switch (this.getDirection()) {
+            case N -> Direction.W;
+            case W -> Direction.S;
+            case S -> Direction.E;
+            case E -> Direction.N;
+        };
+        log.info("Probe moved to left. New direction: [{}]", newDirection.getDescription());
+        this.setDirection(newDirection);
+    }
+
+    public void turnProbeRight() {
+        Direction newDirection = switch (this.getDirection()) {
+            case N -> Direction.E;
+            case E -> Direction.S;
+            case S -> Direction.W;
+            case W -> Direction.N;
+        };
+        log.info("Probe moved to rigth. New direction: [{}]", newDirection.getDescription());
+        this.setDirection(newDirection);
+    }
 }

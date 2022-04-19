@@ -9,7 +9,7 @@ import java.util.*;
 
 @Component
 class InMemoryDatabase {
-    private static Map<Planet, List<Probe>> probesPerPlanet = new HashMap<>();
+    /*private static Map<Planet, List<Probe>> probesPerPlanet = new HashMap<>();
 
     @Repository
     public class PlanetDAO implements Planets {
@@ -25,7 +25,7 @@ class InMemoryDatabase {
         public Optional<Planet> findById(int id) {
             return probesPerPlanet.keySet()
                     .stream()
-                    .filter(planet -> planet.getId() == id)
+                    //.filter(planet -> planet.getId() == id)
                     .findFirst();
         }
     }
@@ -51,5 +51,5 @@ class InMemoryDatabase {
                             .filter(probe -> probe.getId() == id)
             ).findFirst();
         }
-    }
+    }*/
 }
