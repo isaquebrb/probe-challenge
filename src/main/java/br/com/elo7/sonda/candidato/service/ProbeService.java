@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.google.common.annotations.VisibleForTesting;
 import br.com.elo7.sonda.candidato.dto.InputDTO;
 import br.com.elo7.sonda.candidato.dto.ProbeDTO;
 import br.com.elo7.sonda.candidato.model.Command;
@@ -32,8 +31,7 @@ public class ProbeService {
 		
 		return convertedProbes;
 	}
-	
-	@VisibleForTesting
+
 	void applyCommandToProbe(Probe probe, char command) {
 		switch (command) {
 			case Command.R:

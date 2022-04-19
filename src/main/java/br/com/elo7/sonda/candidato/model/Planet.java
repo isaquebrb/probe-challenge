@@ -1,27 +1,20 @@
 package br.com.elo7.sonda.candidato.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Planet {
-	private int id;
+
+	@Id
+	private Long id;
 	private int width;
 	private int height;
-	
-	@Override
-	public int hashCode() {
+
+	public Long getId() {
 		return id;
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof Planet) {
-			return ((Planet) obj).id == this.id;
-		}
-		return false;
-	}
-
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public int getWidth() {
