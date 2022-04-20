@@ -12,7 +12,7 @@ import br.com.elo7.sonda.candidato.model.Probe;
 public class ProbeServiceTest {
 	/*
 	@Autowired
-	private ProbeService subject;
+	private ProbeServiceImpl subject;
 	
 	@Test
 	public void should_change_probe_direction_from_N_To_W_when_receive_the_command_L() {

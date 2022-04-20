@@ -1,26 +1,26 @@
 package br.com.elo7.sonda.candidato.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.elo7.sonda.candidato.dto.PlanetProbeRequest;
+import br.com.elo7.sonda.candidato.dto.ProbePlanetResponse;
+import br.com.elo7.sonda.candidato.interactor.PlanetProbeInteractor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import br.com.elo7.sonda.candidato.dto.InputDTO;
-import br.com.elo7.sonda.candidato.model.Probe;
-import br.com.elo7.sonda.candidato.service.ProbeService;
+import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/planet-with-probes")
+@RequiredArgsConstructor
 public class PlanetAndProbeController {
-	@Autowired
-	private ProbeService probeService;
 
-	@PostMapping
-    public ResponseEntity<List<Probe>> register(@RequestBody InputDTO inputDto) {
-		return ResponseEntity.ok(probeService.landProbes(inputDto));        
+    private final PlanetProbeInteractor planetProbeInteractor;
+
+    @PostMapping
+    public ResponseEntity<List<ProbePlanetResponse>> register(@RequestBody PlanetProbeRequest planetProbeRequest) {
+        return ResponseEntity.ok(planetProbeInteractor.register(planetProbeRequest));
     }
 }

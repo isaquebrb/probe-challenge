@@ -1,7 +1,17 @@
 package br.com.elo7.sonda.candidato.model;
 
-public class Command {
-    public static final char L = 'L';
-	public static final char M = 'M';
-	public static final char R = 'R';
+import lombok.Getter;
+
+public enum Command {
+
+    L("LEFT"),
+    R("RIGHT"),
+    M("MOVE");
+
+    Command(String description) {
+        this.description = description;
+    }
+
+    @Getter
+    private final String description;
 }

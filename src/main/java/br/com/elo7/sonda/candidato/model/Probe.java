@@ -1,6 +1,7 @@
 package br.com.elo7.sonda.candidato.model;
 
-import br.com.elo7.sonda.candidato.exception.DirectionException;
+import br.com.elo7.sonda.candidato.exception.CommandException;
+import br.com.elo7.sonda.candidato.exception.MovementException;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -41,9 +42,9 @@ public class Probe {
             case W -> newX--;
             case S -> newY--;
             case E -> newX++;
-            default -> throw new DirectionException("Wrong direction. Cannot move probe forward");
+            default -> throw new MovementException("Invalid direction. Cannot move probe forward");
         }
-        log.info("Probe moved forward. Coordinates: X = [{}] - Y = [{}]", newX, newY);
+        log.info("Probe moved forward. Coordinates: X = {} | Y = {}", newX, newY);
         this.setX(newX);
         this.setY(newY);
     }
@@ -68,5 +69,15 @@ public class Probe {
         };
         log.info("Probe moved to rigth. New direction: [{}]", newDirection.getDescription());
         this.setDirection(newDirection);
+    }
+
+    public void applyCommandToProbe(Command command) {
+        //todo rever comandos, direção está incorreta
+        switch (command) {
+            case R -> this.turnProbeRight();
+            case L -> this.turnProbeLeft();
+            case M -> this.moveProbeForward();
+            default -> throw new CommandException("Invalid command [" + command.name() + "] cannot move probe");
+        }
     }
 }
