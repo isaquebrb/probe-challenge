@@ -1,6 +1,6 @@
-package br.com.elo7.sonda.candidato.persistence;
+package br.com.elo7.sonda.candidato.infrastructure.repository;
 
-import br.com.elo7.sonda.candidato.model.Probe;
+import br.com.elo7.sonda.candidato.domain.entity.Probe;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

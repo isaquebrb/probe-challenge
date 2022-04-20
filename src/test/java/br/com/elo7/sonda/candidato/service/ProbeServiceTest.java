@@ -2,11 +2,7 @@ package br.com.elo7.sonda.candidato.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import br.com.elo7.sonda.candidato.model.Probe;
 
 @SpringBootTest
 public class ProbeServiceTest {

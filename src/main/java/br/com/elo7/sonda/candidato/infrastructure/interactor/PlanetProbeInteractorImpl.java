@@ -1,14 +1,12 @@
-package br.com.elo7.sonda.candidato.interactor;
+package br.com.elo7.sonda.candidato.infrastructure.interactor;
 
 
-import br.com.elo7.sonda.candidato.dto.PlanetProbeRequest;
-import br.com.elo7.sonda.candidato.dto.ProbePlanetResponse;
-import br.com.elo7.sonda.candidato.dto.ProbeRequest;
-import br.com.elo7.sonda.candidato.model.Command;
-import br.com.elo7.sonda.candidato.model.Planet;
-import br.com.elo7.sonda.candidato.model.Probe;
-import br.com.elo7.sonda.candidato.service.PlanetService;
-import br.com.elo7.sonda.candidato.service.ProbeService;
+import br.com.elo7.sonda.candidato.api.model.PlanetProbeRequest;
+import br.com.elo7.sonda.candidato.api.model.ProbePlanetResponse;
+import br.com.elo7.sonda.candidato.domain.entity.Planet;
+import br.com.elo7.sonda.candidato.domain.entity.Probe;
+import br.com.elo7.sonda.candidato.domain.service.PlanetService;
+import br.com.elo7.sonda.candidato.domain.service.ProbeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -37,17 +35,8 @@ public class PlanetProbeInteractorImpl implements PlanetProbeInteractor {
     private List<Probe> convertAndMoveProbes(PlanetProbeRequest planetProbeRequest, Planet planet) {
         return planetProbeRequest.getProbes().stream().map(probeRequest -> {
             Probe probe = probeRequest.toEntity(planet);
-            moveProbeWithAllCommands(probe, probeRequest);
+            probeService.moveProbeWithAllCommands(probe, probeRequest.getCommands());
             return probe;
         }).toList();
-    }
-
-    private void moveProbeWithAllCommands(Probe probe, ProbeRequest probeRequest) {
-        log.info("Landing new probe on planet [{}]", probe.getPlanet().getId());
-
-        for (Command command : probeRequest.getCommands()) {
-            log.info("Moving probe with command [{}] ({})", command.name(), command.getDescription());
-            probe.applyCommandToProbe(command);
-        }
     }
 }

@@ -1,8 +1,8 @@
-package br.com.elo7.sonda.candidato.controller;
+package br.com.elo7.sonda.candidato.api.controller;
 
-import br.com.elo7.sonda.candidato.dto.PlanetProbeRequest;
-import br.com.elo7.sonda.candidato.dto.ProbePlanetResponse;
-import br.com.elo7.sonda.candidato.interactor.PlanetProbeInteractor;
+import br.com.elo7.sonda.candidato.api.model.PlanetProbeRequest;
+import br.com.elo7.sonda.candidato.api.model.ProbePlanetResponse;
+import br.com.elo7.sonda.candidato.infrastructure.interactor.PlanetProbeInteractor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

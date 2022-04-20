@@ -1,4 +1,4 @@
-package br.com.elo7.sonda.candidato.exception;
+package br.com.elo7.sonda.candidato.domain.exception;
 
 public class CommandException extends RuntimeException {
 

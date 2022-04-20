@@ -1,7 +1,7 @@
-package br.com.elo7.sonda.candidato.dto;
+package br.com.elo7.sonda.candidato.api.model;
 
-import br.com.elo7.sonda.candidato.model.Direction;
-import br.com.elo7.sonda.candidato.model.Probe;
+import br.com.elo7.sonda.candidato.domain.entity.enums.Direction;
+import br.com.elo7.sonda.candidato.domain.entity.Probe;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

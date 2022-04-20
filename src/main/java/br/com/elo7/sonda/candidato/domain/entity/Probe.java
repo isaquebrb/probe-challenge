@@ -1,7 +1,9 @@
-package br.com.elo7.sonda.candidato.model;
+package br.com.elo7.sonda.candidato.domain.entity;
 
-import br.com.elo7.sonda.candidato.exception.CommandException;
-import br.com.elo7.sonda.candidato.exception.MovementException;
+import br.com.elo7.sonda.candidato.domain.entity.enums.Command;
+import br.com.elo7.sonda.candidato.domain.entity.enums.Direction;
+import br.com.elo7.sonda.candidato.domain.exception.MovementException;
+import br.com.elo7.sonda.candidato.domain.exception.CommandException;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -72,7 +74,6 @@ public class Probe {
     }
 
     public void applyCommandToProbe(Command command) {
-        //todo rever comandos, direção está incorreta
         switch (command) {
             case R -> this.turnProbeRight();
             case L -> this.turnProbeLeft();

@@ -1,6 +1,6 @@
-package br.com.elo7.sonda.candidato.dto;
+package br.com.elo7.sonda.candidato.api.model;
 
-import br.com.elo7.sonda.candidato.model.Planet;
+import br.com.elo7.sonda.candidato.domain.entity.Planet;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
