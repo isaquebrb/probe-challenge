@@ -19,8 +19,8 @@ public class ProbeRequest {
     public Probe toEntity(Planet planet) {
         Probe probe = new Probe();
         probe.setPlanet(planet);
-        probe.setX(this.getX());
-        probe.setY(this.getY());
+        probe.setCoordinateX(this.getX());
+        probe.setCoordinateY(this.getY());
         probe.setDirection(this.getDirection());
         return probe;
     }

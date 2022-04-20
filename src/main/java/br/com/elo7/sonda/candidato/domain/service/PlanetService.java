@@ -5,4 +5,6 @@ import br.com.elo7.sonda.candidato.domain.entity.Planet;
 public interface PlanetService {
 
     Planet save(Planet planet);
+
+    Planet findById(Long planetId);
 }

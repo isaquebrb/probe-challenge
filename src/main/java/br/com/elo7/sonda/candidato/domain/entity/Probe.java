@@ -2,8 +2,8 @@ package br.com.elo7.sonda.candidato.domain.entity;
 
 import br.com.elo7.sonda.candidato.domain.entity.enums.Command;
 import br.com.elo7.sonda.candidato.domain.entity.enums.Direction;
-import br.com.elo7.sonda.candidato.domain.exception.MovementException;
 import br.com.elo7.sonda.candidato.domain.exception.CommandException;
+import br.com.elo7.sonda.candidato.domain.exception.MovementException;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +13,12 @@ import javax.persistence.*;
 
 @Slf4j
 @Entity
+@Getter
 @Setter
+@Table(name = "probe", indexes = {
+        @Index(name = "x_idx", columnList = "x"),
+        @Index(name = "y_idx", columnList = "y")
+})
 public class Probe {
 
     @Id
@@ -21,24 +26,22 @@ public class Probe {
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    @Getter
-    private Integer x;
+    @Column(name = "x")
+    private Integer coordinateX;
 
-    @Getter
-    private Integer y;
+    @Column(name = "y")
+    private Integer coordinateY;
 
-    @Getter
     @Enumerated(value = EnumType.STRING)
     private Direction direction;
 
-    @Getter
     @ManyToOne
-    @JoinColumn(name = "planet_id") //todo lazy? validar no final da entrega
+    @JoinColumn(name = "planet_id")
     private Planet planet;
 
     public void moveProbeForward() {
-        int newX = this.getX();
-        int newY = this.getY();
+        int newX = this.getCoordinateX();
+        int newY = this.getCoordinateY();
         switch (this.getDirection()) {
             case N -> newY++;
             case W -> newX--;
@@ -47,8 +50,8 @@ public class Probe {
             default -> throw new MovementException("Invalid direction. Cannot move probe forward");
         }
         log.info("Probe moved forward. Coordinates: X = {} | Y = {}", newX, newY);
-        this.setX(newX);
-        this.setY(newY);
+        this.setCoordinateX(newX);
+        this.setCoordinateY(newY);
     }
 
     public void turnProbeLeft() {

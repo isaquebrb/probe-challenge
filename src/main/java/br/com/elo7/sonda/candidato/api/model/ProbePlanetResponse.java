@@ -15,8 +15,8 @@ public class ProbePlanetResponse {
     private PlanetResponse planet;
 
     public ProbePlanetResponse(Probe probe) {
-        this.x = probe.getX();
-        this.y = probe.getY();
+        this.x = probe.getCoordinateX();
+        this.y = probe.getCoordinateY();
         this.direction = probe.getDirection();
         this.planet = new PlanetResponse(probe.getPlanet());
     }
