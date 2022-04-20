@@ -12,4 +12,6 @@ public interface ProbeService {
     void moveProbeWithAllCommands(Probe probe, List<Command> commands);
 
     void validateDirectionAvailable(Integer xCoordinate, Integer yCoordinate, Long planetId);
+
+    Probe findById(Long probeId);
 }

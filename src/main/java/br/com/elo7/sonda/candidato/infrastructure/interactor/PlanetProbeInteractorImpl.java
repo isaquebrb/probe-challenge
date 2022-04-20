@@ -1,6 +1,7 @@
 package br.com.elo7.sonda.candidato.infrastructure.interactor;
 
 
+import br.com.elo7.sonda.candidato.api.model.CommandRequest;
 import br.com.elo7.sonda.candidato.api.model.PlanetProbeRequest;
 import br.com.elo7.sonda.candidato.api.model.ProbePlanetResponse;
 import br.com.elo7.sonda.candidato.api.model.ProbeRequest;
@@ -32,7 +33,7 @@ public class PlanetProbeInteractorImpl implements PlanetProbeInteractor {
         List<Probe> probes = planetProbeRequest.getProbes().stream()
                 .map(probeRequest -> convertAndMoveProbes(probeRequest, planet)).toList();
 
-        validateAndSaveProbes(probes);
+        probes.forEach(this::validateAndSaveProbe);
 
         return probes.stream().map(ProbePlanetResponse::new).toList();
     }
@@ -45,9 +46,19 @@ public class PlanetProbeInteractorImpl implements PlanetProbeInteractor {
         List<Probe> probes = probeRequests.stream()
                 .map(probeRequest -> convertAndMoveProbes(probeRequest, planet)).toList();
 
-        validateAndSaveProbes(probes);
+        probes.forEach(this::validateAndSaveProbe);
 
         return probes.stream().map(ProbePlanetResponse::new).toList();
+    }
+
+    @Override
+    public ProbePlanetResponse moveProbe(CommandRequest commandRequest, Long probeId) {
+        Probe probe = probeService.findById(probeId);
+
+        probeService.moveProbeWithAllCommands(probe, commandRequest.getCommands());
+
+        validateAndSaveProbe(probe);
+        return new ProbePlanetResponse(probe);
     }
 
     private Probe convertAndMoveProbes(ProbeRequest probeRequest, Planet planet) {
@@ -56,10 +67,8 @@ public class PlanetProbeInteractorImpl implements PlanetProbeInteractor {
         return probe;
     }
 
-    private void validateAndSaveProbes(List<Probe> probes) {
-        for (Probe probe : probes) {
-            probeService.validateDirectionAvailable(probe.getCoordinateX(), probe.getCoordinateY(), probe.getPlanet().getId());
-            probeService.save(probe);
-        }
+    private void validateAndSaveProbe(Probe probe) {
+        probeService.validateDirectionAvailable(probe.getCoordinateX(), probe.getCoordinateY(), probe.getPlanet().getId());
+        probeService.save(probe);
     }
 }

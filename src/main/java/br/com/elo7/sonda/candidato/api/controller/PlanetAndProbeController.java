@@ -1,5 +1,6 @@
 package br.com.elo7.sonda.candidato.api.controller;
 
+import br.com.elo7.sonda.candidato.api.model.CommandRequest;
 import br.com.elo7.sonda.candidato.api.model.PlanetProbeRequest;
 import br.com.elo7.sonda.candidato.api.model.ProbePlanetResponse;
 import br.com.elo7.sonda.candidato.api.model.ProbeRequest;
@@ -26,5 +27,11 @@ public class PlanetAndProbeController {
     public ResponseEntity<List<ProbePlanetResponse>> registerOnPlanet(@RequestBody List<ProbeRequest> probeRequests,
                                                                       @PathVariable("id") Long planetId) {
         return ResponseEntity.ok(planetProbeInteractor.registerOnPlanet(probeRequests, planetId));
+    }
+
+    @PatchMapping("/probe/{id}")
+    public ResponseEntity<ProbePlanetResponse> moveProbe(@RequestBody CommandRequest commandRequest,
+                                                         @PathVariable("id") Long probeId) {
+        return ResponseEntity.ok(planetProbeInteractor.moveProbe(commandRequest, probeId));
     }
 }

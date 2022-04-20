@@ -3,6 +3,7 @@ package br.com.elo7.sonda.candidato.domain.service;
 import br.com.elo7.sonda.candidato.domain.entity.Probe;
 import br.com.elo7.sonda.candidato.domain.entity.enums.Command;
 import br.com.elo7.sonda.candidato.domain.exception.MovementException;
+import br.com.elo7.sonda.candidato.domain.exception.NotFoundException;
 import br.com.elo7.sonda.candidato.infrastructure.repository.ProbeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,8 +23,7 @@ public class ProbeServiceImpl implements ProbeService {
     public Probe save(Probe probe) {
         log.info("Saving probe with coordinates X = [{}] and Y = [{}]", probe.getCoordinateX(), probe.getCoordinateY());
         return probeRepository.save(probe);
-        //todo add index for coordinates
-        //todo cache?
+        //todo cache no planet findbyId
     }
 
     @Override
@@ -36,6 +36,7 @@ public class ProbeServiceImpl implements ProbeService {
         }
     }
 
+    @Override
     public void validateDirectionAvailable(Integer xCoordinate, Integer yCoordinate, Long planetId) {
         log.info("Checking if probe direction is available on planet [{}]", planetId);
         Optional<Probe> existingProbe = probeRepository
@@ -46,5 +47,11 @@ public class ProbeServiceImpl implements ProbeService {
                     "Cannot land probe in the coordiantes X = [%d] | Y = [%d]. Probe id [%d] is already there",
                     xCoordinate, yCoordinate, planetId));
         }
+    }
+
+    @Override
+    public Probe findById(Long probeId) {
+        return probeRepository.findById(probeId)
+                .orElseThrow(() -> new NotFoundException("Couldn't find probe with id " + probeId));
     }
 }

@@ -1,5 +1,6 @@
 package br.com.elo7.sonda.candidato.infrastructure.interactor;
 
+import br.com.elo7.sonda.candidato.api.model.CommandRequest;
 import br.com.elo7.sonda.candidato.api.model.PlanetProbeRequest;
 import br.com.elo7.sonda.candidato.api.model.ProbePlanetResponse;
 import br.com.elo7.sonda.candidato.api.model.ProbeRequest;
@@ -11,4 +12,6 @@ public interface PlanetProbeInteractor {
     List<ProbePlanetResponse> register(PlanetProbeRequest planetProbeRequest);
 
     List<ProbePlanetResponse> registerOnPlanet(List<ProbeRequest> probeRequests, Long planetId);
+
+    ProbePlanetResponse moveProbe(CommandRequest commandRequest, Long probeId);
 }
