@@ -1,4 +1,4 @@
-package br.com.elo7.sonda.candidato.api.model;
+package br.com.elo7.sonda.candidato.api.model.request;
 
 import br.com.elo7.sonda.candidato.domain.entity.enums.Command;
 import br.com.elo7.sonda.candidato.domain.entity.enums.Direction;
@@ -6,13 +6,18 @@ import br.com.elo7.sonda.candidato.domain.entity.Planet;
 import br.com.elo7.sonda.candidato.domain.entity.Probe;
 import lombok.Getter;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
 public class ProbeRequest {
 
-    private int x;
-    private int y;
+    @NotNull
+    private Integer x;
+    @NotNull
+    private Integer y;
+    @NotNull
     private Direction direction;
     private List<Command> commands;
 

@@ -1,10 +1,10 @@
 package br.com.elo7.sonda.candidato.infrastructure.interactor;
 
 
-import br.com.elo7.sonda.candidato.api.model.CommandRequest;
-import br.com.elo7.sonda.candidato.api.model.PlanetProbeRequest;
-import br.com.elo7.sonda.candidato.api.model.ProbePlanetResponse;
-import br.com.elo7.sonda.candidato.api.model.ProbeRequest;
+import br.com.elo7.sonda.candidato.api.model.request.CommandRequest;
+import br.com.elo7.sonda.candidato.api.model.request.PlanetProbeRequest;
+import br.com.elo7.sonda.candidato.api.model.response.ProbePlanetResponse;
+import br.com.elo7.sonda.candidato.api.model.request.ProbeRequest;
 import br.com.elo7.sonda.candidato.domain.entity.Planet;
 import br.com.elo7.sonda.candidato.domain.entity.Probe;
 import br.com.elo7.sonda.candidato.domain.service.PlanetService;

@@ -1,4 +1,4 @@
-package br.com.elo7.sonda.candidato.api.model;
+package br.com.elo7.sonda.candidato.api.model.response;
 
 import br.com.elo7.sonda.candidato.domain.entity.enums.Direction;
 import br.com.elo7.sonda.candidato.domain.entity.Probe;

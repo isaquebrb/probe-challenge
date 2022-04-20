@@ -1,9 +1,9 @@
 package br.com.elo7.sonda.candidato.api.controller;
 
-import br.com.elo7.sonda.candidato.api.model.CommandRequest;
-import br.com.elo7.sonda.candidato.api.model.PlanetProbeRequest;
-import br.com.elo7.sonda.candidato.api.model.ProbePlanetResponse;
-import br.com.elo7.sonda.candidato.api.model.ProbeRequest;
+import br.com.elo7.sonda.candidato.api.model.request.CommandRequest;
+import br.com.elo7.sonda.candidato.api.model.request.PlanetProbeRequest;
+import br.com.elo7.sonda.candidato.api.model.request.ProbeRequest;
+import br.com.elo7.sonda.candidato.api.model.response.ProbePlanetResponse;
 import br.com.elo7.sonda.candidato.infrastructure.interactor.PlanetProbeInteractor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/planet-with-probes")
 @RequiredArgsConstructor
-public class PlanetAndProbeController {
+public class PlanetAndProbeController implements PlanetAndProbeControllerApi {
 
     private final PlanetProbeInteractor planetProbeInteractor;
 
