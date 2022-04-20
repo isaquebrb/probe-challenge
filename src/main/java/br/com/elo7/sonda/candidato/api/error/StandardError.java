@@ -1,7 +1,5 @@
 package br.com.elo7.sonda.candidato.api.error;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,14 +13,14 @@ public class StandardError {
 
     public StandardError(Integer status, List<String> errors, String message) {
         this.status = status;
-        this.errors = errors;
         this.message = message;
+        this.errors = errors;
         this.date = LocalDateTime.now();
     }
 
     private Integer status;
-    private List<String> errors;
     private String message;
+    private List<String> errors;
 
     @Setter(value = AccessLevel.NONE)
     private LocalDateTime date;
