@@ -23,7 +23,6 @@ public class ProbeServiceImpl implements ProbeService {
     public Probe save(Probe probe) {
         log.info("Saving probe with coordinates X = [{}] and Y = [{}]", probe.getCoordinateX(), probe.getCoordinateY());
         return probeRepository.save(probe);
-        //todo cache no planet findbyId
     }
 
     @Override

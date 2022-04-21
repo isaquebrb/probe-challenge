@@ -11,7 +11,6 @@ import br.com.elo7.sonda.candidato.domain.service.PlanetService;
 import br.com.elo7.sonda.candidato.domain.service.ProbeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -20,7 +19,7 @@ import java.util.List;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class PlanetProbeInteractorImpl implements PlanetProbeInteractor {
+public class PlanetAndProbeInteractorImpl implements PlanetAndProbeInteractor {
 
     private final PlanetService planetService;
     private final ProbeService probeService;

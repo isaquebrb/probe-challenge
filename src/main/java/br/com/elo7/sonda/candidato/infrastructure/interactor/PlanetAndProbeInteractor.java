@@ -7,7 +7,7 @@ import br.com.elo7.sonda.candidato.api.model.request.ProbeRequest;
 
 import java.util.List;
 
-public interface PlanetProbeInteractor {
+public interface PlanetAndProbeInteractor {
 
     List<ProbePlanetResponse> register(PlanetProbeRequest planetProbeRequest);
 

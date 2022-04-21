@@ -2,11 +2,11 @@ package br.com.elo7.sonda.candidato.infrastructure.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
 @Slf4j
-@Component
+@Configuration
 public class CacheConfig {
 
     @Scheduled(fixedRate = 300000) //5 minutes cache
