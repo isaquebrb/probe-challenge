@@ -1,12 +1,13 @@
 ### How start the project
 
+- Install Java 17
 - Configure a PostgreSQL database:
   - It can be started easily with docker. Run command `docker-compose up` at the project root.
   - Or configure your own PostgreSQL database and change the configurations at the `application.properties` file.
 - Make sure port 8080 is unoccupied;
 - Run command `./mvnw spring-boot:run` at the project root.
 
-### Doing a requst
+### Doing a request
 
 Import the collection bellow on POSTMAN or another tool to do http requests:
 
