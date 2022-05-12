@@ -1,70 +1,36 @@
-## Informações sobre o projeto
+### How start the project
 
-### Como subir o projeto
+- Configure a PostgreSQL database:
+  - It can be started easily with docker. Run command `docker-compose up` at the project root.
+  - Or configure your own PostgreSQL database and change the configurations at the `application.properties` file.
+- Make sure port 8080 is unoccupied;
+- Run command `./mvnw spring-boot:run` at the project root.
 
-- Certifique-se de configuar o banco de dados PostgreSQL;
-  - Ele pode ser executado facilmente usando docker. Execute o comando `docker-compose up` na raiz do projeto.
-  - Outra opção é configurar um banco PostgreSQL e alterar as configurações de acesso no arquivo `application.properties` 
-- Certifique-se que a porta 8080 esteja desocupada;
-- Certifique-se de que você possui o maven instalado localmente;
-- Certifique-se de que você está na raiz do projeto;
-- Rode o `./mvnw spring-boot:run`
+### Doing a requst
 
-Com isso as dependências serão baixadas e a API subirá na porta `8080`;
-
-### Fazendo uma requisição
-
-Importe a collection abaixo no postman ou outra ferramenta para realizar as requisições http:
+Import the collection bellow on POSTMAN or another tool to do http requests:
 
 [Download Collection](https://www.postman.com/collections/eea24c40158609084b62)
 
-### Lista dos endpoints
+### Endpoints List
 
-| Método | Path                            | Descrição                                                     |
+| Method | Path                            | Description                                                   |
 |--------|---------------------------------|---------------------------------------------------------------|
-| POST   | /planet-with-probes             | Registra um planeta e multíplas sondas                        |
-| POST   | /planet-with-probes/planet/{id} | Registra uma sonda em um determinado planeta                  |
-| PATCH  | /planet-with-probes/probe/{id}  | Move uma sonda através de comandos                            |
+| POST   | /planet-with-probes             | Register a planet and multiple probes                         |
+| POST   | /planet-with-probes/planet/{id} | Register a probe on a particular planet                       |
+| PATCH  | /planet-with-probes/probe/{id}  | Move a probe via commands                                     |
 
-### Documentação dos endpoints
+### Endpoints documentation
 
-A documentação dos endpoints também está disponível através do swagger-ui. Após executar a aplicação acesse o endereço abaixo.
+The documentation of endpoints are also availabe through swagger-ui. After running the application, access the address below.
 ```
 http://localhost:8080/swagger-ui/index.html
 ```
 
-### Monitoria
+### Monitoring
 
-No projeto foi adicionado a dependência *actuator* para monitoriar a "saúde" da aplicação.
+At the project was added the dependency *actuator* to monitor the application "health".
 ```
 http://localhost:8080/actuator
 http://localhost:8080/actuator/health
 ```
-
-
-### Explicação da necessidade:
-```
-Tamanho da área do planeta : 5x5
-
-Posição de pouso da sonda 1: x=1, y=2 face para Norte
-Sequencia de comandos: LMLMLMLMM
-Posição final da sonda: x=1 y=3 face para Norte
-
-Posição de pouso da sonda 2: x=3, y=3 face para Leste
-Sequencia de comandos: MMRMMRMRRML flw
-Posição final da sonda: x=5 y=1 face para Norte
-```
-
-A sequência de comandos é um conjunto de instruções enviadas da terra para a sonda, onde :
-- `M` -> Andar para a frente na direção que está 1 posição.
-- `L` -> Virar a sonda para a esquerda (90 graus)
-- `R` -> Virar a sonda para a direita (90 graus)
-
-A área do planeta é um plano cartesiano com o tamanho informado pelo operador.
-
-A orientação da sonda dentro do plano cartesiano usa uma rosa dos ventos como referência
-
-![rosa dos ventos](http://i.imgur.com/li8Ae5L.png "Rosa dos Ventos")
-
-O sistema deveria receber os dados sobre o planeta, sondas e movimentos por meio de uma interface REST.
-
